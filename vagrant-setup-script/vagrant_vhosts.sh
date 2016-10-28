@@ -5,10 +5,12 @@ a2ensite phpmyadmin.PROJECT_NAME.com.conf
 service apache2 reload
 service apache2 restart
 
-mysql -uroot -proot
+mysql -uroot -proot << EOF
 CREATE DATABASE IF NOT EXISTS PROJECT_NAME;
 CREATE USER 'PROJECT_NAME'@'localhost' IDENTIFIED BY 'PROJECT_NAME';
 GRANT ALL PRIVILEGES ON PROJECT_NAME.* TO 'PROJECT_NAME'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 exit;
+EOF
+
 exit;
